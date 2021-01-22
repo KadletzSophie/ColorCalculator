@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("controllerview/sample.fxml"));
-        primaryStage.setTitle("Color Generator");
+        primaryStage.setTitle("Color Calculator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

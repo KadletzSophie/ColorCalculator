@@ -14,8 +14,104 @@ public class Model_color {
     private ModularCounter blue;
     private String hex;
 
-    public static void main(String[] args) {
-        
+    public static void main(String[] args)
+    {
+        Model_color model_color = new Model_color();
+        ColorCode cc;
+        boolean inputCorrect;
+        cc = ColorCode.BLUE;
+
+        while (true)
+        {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Menu:");
+            System.out.println("a - changeColorViaAbsoluteValue\n" +
+                    "r - changeColorViaRelativeValue\n" +
+                    "? - view all accessors\n" +
+                    "q - quit \n");
+            System.out.println("Enter command: ");
+
+            String input = sc.next();
+            switch (input)
+            {
+                case "a":
+                    System.out.println("Enter color (red, green or blue):");
+                    String color = sc.next();
+                    inputCorrect = true;
+                    switch (color) {
+                        case "red":
+                            cc = ColorCode.RED;
+                            break;
+
+                        case "green":
+                            cc = ColorCode.GREEN;
+                            break;
+
+                        case "blue":
+                            cc = ColorCode.BLUE;
+                            break;
+
+                        default:
+                            inputCorrect = false;
+                    }
+
+                    if (inputCorrect) {
+                        System.out.println("Enter value (0-255):");
+                        model_color.changeColorViaAbsoluteValue(cc, sc.nextInt());
+                        System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");
+                    } else {
+                        System.out.println("\n Please enter a valid color (red, green or blue) \n");
+                    }
+                    break;
+
+                case "r":
+                    System.out.println("Enter color (red, green or blue):");
+                    String colorrelative = sc.next();
+                    inputCorrect = true;
+                    switch (colorrelative)
+                    {
+                        case "red":
+                            cc = ColorCode.RED;
+                            break;
+
+                        case "green":
+                            cc = ColorCode.GREEN;
+                            break;
+
+                        case "blue":
+                            cc = ColorCode.BLUE;
+                            break;
+
+                        default:
+                            inputCorrect = false;
+                    }
+
+                    if (inputCorrect)
+                    {
+                        System.out.println("Enter value:");
+                        model_color.changeColorViaRelativeValue(cc, sc.nextInt());
+                        //System.out.println("Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue());
+                        System.out.println(model_color.toString());
+                    }
+                    else
+                    {
+                        System.out.println("Wrong input. Please enter a valid input: \n"+
+                                "a - changeColorViaAbsoluteValue\n" +
+                                "r - changeColorViaRelativeValue\n" +
+                                "? - view all accessors\n" +
+                                "q - quit");
+                    }
+                    break;
+
+                case "?":
+                    System.out.println("\n Red   = " + model_color.getRed() + "\n Green = " + model_color.getGreen() + "\n Blue  = " + model_color.getBlue() + "\n Hex   = " + model_color.getHex() + "\n");
+                    break;
+
+                case "q":
+                    System.out.println("Goodbye :)");
+                    return;
+            }
+        }
     }
 
     public Model_color() {
