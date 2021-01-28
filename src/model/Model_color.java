@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.Alert;
+
 import java.util.Scanner;
 
 /**
@@ -57,9 +59,9 @@ public class Model_color {
 
                     if (inputCorrect) {
                         try{
-                        System.out.println("Enter value (0-255):");
-                        model_color.changeColorViaAbsoluteValue(cc, sc.nextInt());
-                        System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");}
+                            System.out.println("Enter value (0-255):");
+                            model_color.changeColorViaAbsoluteValue(cc, sc.nextInt());
+                            System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");}
                         catch (Exception ex){
                             System.out.println("Bitte gültigen Wert eingeben. \n");
                         }
@@ -93,10 +95,10 @@ public class Model_color {
                     if (inputCorrect)
                     {
                         try{
-                        System.out.println("Enter value:");
-                        model_color.changeColorViaRelativeValue(cc, sc.nextInt());
-                        //System.out.println("Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue());
-                        System.out.println(model_color.toString());}
+                            System.out.println("Enter value:");
+                            model_color.changeColorViaRelativeValue(cc, sc.nextInt());
+                            //System.out.println("Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue());
+                            System.out.println(model_color.toString());}
                         catch (Exception ex){
                             System.out.println("Bitte gültigen Wert eingeben.\n");
                         }
@@ -125,20 +127,28 @@ public class Model_color {
     }
 
     public void changeColorViaAbsoluteValue(ColorCode cc, String value) {
-        int intValue = Integer.parseInt(value);
+        try{
+            int intValue = Integer.parseInt(value);
+            switch (cc) {
+                case RED:
+                    updateModularCounterAbsolute(intValue, red);
+                    break;
 
-        switch (cc) {
-            case RED:
-                updateModularCounterAbsolute(intValue, red);
-                break;
+                case GREEN:
+                    updateModularCounterAbsolute(intValue, green);
+                    break;
 
-            case GREEN:
-                updateModularCounterAbsolute(intValue, green);
-                break;
-
-            case BLUE:
-                updateModularCounterAbsolute(intValue, blue);
-                break;
+                case BLUE:
+                    updateModularCounterAbsolute(intValue, blue);
+                    break;
+            }}
+        catch (Exception ex){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Wrong input");
+            //alert.setHeaderText("Wrong Username or Password");
+            alert.setHeaderText("Enter a valid value ");
+            alert.setContentText("Valid value:  0-255");
+            alert.showAndWait();
         }
     }
 

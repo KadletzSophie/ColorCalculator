@@ -95,6 +95,16 @@ public class Controller {
         updateHex();
     }
 
+    @FXML
+    void saveToFile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void loadFromFile(ActionEvent event) {
+
+    }
+
     private void updateHex(){
         hex_value.setText(mc.getHex());
         color.setStyle("-fx-background-color:"+mc.getHex()+";");
