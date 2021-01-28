@@ -56,11 +56,15 @@ public class Model_color {
                     }
 
                     if (inputCorrect) {
+                        try{
                         System.out.println("Enter value (0-255):");
                         model_color.changeColorViaAbsoluteValue(cc, sc.nextInt());
-                        System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");
+                        System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");}
+                        catch (Exception ex){
+                            System.out.println("Bitte gültigen Wert eingeben. \n");
+                        }
                     } else {
-                        System.out.println("\n Please enter a valid color (red, green or blue) \n");
+                        System.out.println("Please enter a valid color (red, green or blue) \n");
                     }
                     break;
 
@@ -88,18 +92,18 @@ public class Model_color {
 
                     if (inputCorrect)
                     {
+                        try{
                         System.out.println("Enter value:");
                         model_color.changeColorViaRelativeValue(cc, sc.nextInt());
                         //System.out.println("Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue());
-                        System.out.println(model_color.toString());
+                        System.out.println(model_color.toString());}
+                        catch (Exception ex){
+                            System.out.println("Bitte gültigen Wert eingeben.\n");
+                        }
                     }
                     else
                     {
-                        System.out.println("Wrong input. Please enter a valid input: \n"+
-                                "a - changeColorViaAbsoluteValue\n" +
-                                "r - changeColorViaRelativeValue\n" +
-                                "? - view all accessors\n" +
-                                "q - quit");
+                        System.out.println("Please enter a valid color (red, green or blue) \n");
                     }
                     break;
 
