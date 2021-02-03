@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.control.Alert;
 
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -214,6 +215,37 @@ public class Model_color {
     public String getHex() {
         hex = String.format("#%02x%02x%02x", red.getValue(), green.getValue(), blue.getValue()).toUpperCase();
         return hex;
+    }
+
+    public  void saveToFile() {
+        try {
+            FileWriter fw = new FileWriter("color.dat");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Color File Format 1.0");
+            bw.newLine();
+            bw.write(red.toString());
+            bw.newLine();
+            bw.write(green.toString());
+            bw.newLine();
+            bw.write(blue.toString());
+            bw.newLine();
+            bw.close();
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        String s;
+        try {
+            FileReader fr = new FileReader("color.dat");
+            BufferedReader br = new BufferedReader(fr);
+            while ((s = br.readLine()) != null)
+            {
+                System.out.println(s);
+            }
+            br.close();
+        } catch (IOException io){
+            System.out.println(io.getMessage());
+        }
     }
 
     @Override

@@ -97,6 +97,7 @@ public class Controller {
 
     @FXML
     void saveToFile(ActionEvent event) {
+        mc.saveToFile();
 
     }
 
