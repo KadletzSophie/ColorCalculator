@@ -136,7 +136,7 @@ public class ModularCounter {
      *  <code>ModularCounter</code>: value (mod modulus)
      */
     public String toString ()
-    {return value + "(mod " + modulus + ")";}
+    {return value + " (mod " + modulus + ")";}
 
 
 

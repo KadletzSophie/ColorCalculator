@@ -98,12 +98,15 @@ public class Controller {
     @FXML
     void saveToFile(ActionEvent event) {
         mc.saveToFile();
-
     }
 
     @FXML
     void loadFromFile(ActionEvent event) {
-
+        int[] colors = mc.loadFromFile();
+        red_value.setText(Integer.toString(colors[0]));
+        green_value.setText(Integer.toString(colors[1]));
+        blue_value.setText(Integer.toString(colors[2]));
+        updateHex();
     }
 
     private void updateHex(){

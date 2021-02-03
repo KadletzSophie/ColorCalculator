@@ -1,7 +1,6 @@
 package model;
 
 import javafx.scene.control.Alert;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -62,7 +61,7 @@ public class Model_color {
                         try{
                             System.out.println("Enter value (0-255):");
                             model_color.changeColorViaAbsoluteValue(cc, sc.nextInt());
-                            System.out.println(" \n Red:" + model_color.red + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");}
+                            System.out.println(" \n Red:" + model_color.red.getValue() + " Green:" + model_color.green.getValue() + " Blue:" + model_color.blue.getValue() +"\n");}
                         catch (Exception ex){
                             System.out.println("Bitte gültigen Wert eingeben. \n");
                         }
@@ -129,6 +128,7 @@ public class Model_color {
 
     public void changeColorViaAbsoluteValue(ColorCode cc, String value) {
         try{
+            //System.out.println(value);
             int intValue = Integer.parseInt(value);
             switch (cc) {
                 case RED:
@@ -144,6 +144,7 @@ public class Model_color {
                     break;
             }}
         catch (Exception ex){
+            //ex.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Wrong input");
             //alert.setHeaderText("Wrong Username or Password");
@@ -246,6 +247,25 @@ public class Model_color {
         } catch (IOException io){
             System.out.println(io.getMessage());
         }
+    }
+
+    public int[] loadFromFile() {
+        try {
+            BufferedReader reader =new BufferedReader(new FileReader("color.dat"));
+            System.out.println(reader);
+            String[] strar = new String[4];
+            for (int i = 0; i < strar.length; i++) {
+                strar[i] = reader.readLine();
+            }
+
+            changeColorViaAbsoluteValue(ColorCode.RED, strar[1].split(" ")[0]);
+            changeColorViaAbsoluteValue(ColorCode.GREEN, strar[2].split(" ")[0]);
+            changeColorViaAbsoluteValue(ColorCode.BLUE, strar[3].split(" ")[0]);
+            reader.close();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+        return new int[] {red.getValue(), green.getValue(), blue.getValue()};
     }
 
     @Override
